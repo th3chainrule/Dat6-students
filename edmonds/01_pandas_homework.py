@@ -21,18 +21,21 @@ drinks['beer_servings']
 drinks.beer_servings                         # Same thing.
 
 # Calculate the average 'beer_servings' for the entire dataset
-drinks['beer_servings'].sum() / drinks.shape[0]
+drinks['beer_servings'].sum() / float(drinks.shape[0])
+drinks.beer_servings.mean()                 # Same thing.
 
 # Print all columns, but only show rows where the country is in Europe
 drinks[drinks.continent == 'EU']
 
 # Calculate the average 'beer_servings' for all of Europe
 drinks_EU = drinks[drinks.continent == 'EU']
-drinks_EU['beer_servings'].sum() / drinks_EU.shape[0]
+drinks_EU['beer_servings'].sum() / float(drinks_EU.shape[0])
+drinks_EU.beer_servings.mean()               # Same thing... Sigh.
 
 # Only show European countries with 'wine_servings' greater than 300
 drinks[(drinks.continent == 'EU') & (300 < drinks.wine_servings)]
 drinks_EU[300 < drinks_EU.wine_servings]     # Same thing.
+drinks_EU[300 < drinks_EU.wine_servings].iloc[:,[0,3]] # Only relevant columns
 
 # Determine which 10 countries have the highest 'total_litres_of_pure_alcohol'
 drinks_total = drinks.sort_index(by='total_litres_of_pure_alcohol',ascending=False)
