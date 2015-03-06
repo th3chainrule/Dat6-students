@@ -1,8 +1,4 @@
-Lena Nguyen
-
-GA DAT-6
-
-6 March 2015
+Lena Nguyen | GA DAT-6 | 6 March 2015
 
 # Course Project
 
