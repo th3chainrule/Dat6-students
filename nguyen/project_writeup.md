@@ -1,5 +1,7 @@
 Lena Nguyen
+
 GA DAT-6
+
 6 March 2015
 
 # Course Project
@@ -14,7 +16,7 @@ I'm interested in topics relating to transportation, urban planning, and more ge
 ### Historic Metrorail ridership data
 WMATA provides [historic ridership data](http://www.wmata.com/pdfs/planning/Historical%20Rail%20Ridership%20By%20Station.pdf) on their website by station and year from 1977 to 2011. It is unfortunately provided in PDF format. 
 
-Code for DC also has [historic ridership data](http://www.opendatadc.org/dataset/wmata-metrorail-ridership-by-date) for every day in the last 10 years. It is in a much more palatable csv form. The data is clean and simple. It only has two columns: One for the date and the other is number of riders. It appears that the number of riders have been rounded off to the near hundred thousand. 
+But luckily, Code for DC also has [historic ridership data](http://www.opendatadc.org/dataset/wmata-metrorail-ridership-by-date) for every day in the last 10 years. It is in a much more palatable csv form. The data is clean and simple. It only has two columns: One for the date and the other is number of riders. It appears that the number of riders have been rounded off to the near hundred thousand. 
 
 ### Data for factors affecting ridership
 * Fare prices: You can get this data from the WMATA website
