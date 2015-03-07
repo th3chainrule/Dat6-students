@@ -16,9 +16,5 @@ I know I will have to, at least, process the time variable in the dataset, so to
 
 For now I know that demand is the highest during the summer, and lowest in winter. 
 
-
-
-
-
 ##Why I'm interested
 I chose this topic because it gives me the chance to explore a variety of forecasting tools. 
