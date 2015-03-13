@@ -1,13 +1,14 @@
-#---------------------------------------------------#
+#------------------------------------------------------------------------------------#
 # DATA WRANGLING/VISUALIZATION                      
 # Uses IMDB data as an example                      
 # Data Source: 
 # http://nbviewer.ipython.org/github/cs109/content/blob/master/lec_04_wrangling.ipynb
 #
-# NOTE: Homework is at the bottom
-#---------------------------------------------------#
-# LAST EDITED BY: Lena Nguyen - February 28, 2015
-#---------------------------------------------------#
+# NOTE: Homework is at the bottom starting from line 203
+#
+#------------------------------------------------------------------------------------#
+# LAST EDITED BY: Lena Nguyen - March 12, 2015
+#------------------------------------------------------------------------------------#
 
 #-----------------#
 # IMPORT MODULES  #
@@ -152,8 +153,10 @@ decade =  (data.year // 10) * 10
 
 tyd = data[['title', 'year']]
 tyd['decade'] = decade
+data['decade']=decade
 
 tyd.head()
+
 
 #mean score for all movies in each decade
 
@@ -201,31 +204,33 @@ for year, subset in data.groupby('year'):
 #-- HOMEWORK --#
 #--------------#
 
-# look at the characteristics of the movies with the most votes
-data[data.votes == data.votes.max()][['title', 'year', 'score', 'votes', 'genres']]
-data.sort('votes', ascending=False, inplace=False)
-data[['title', 'year', 'score', 'votes', 'genres']].head(20)
-#--> LN:
-#--> 1) IMDB users only seem to rate movies they actually enjoy
-#--> 2) The majority of top rated movies and most voted on are of the Drama/Thriller genre
-
 # Look at movies with the least number of ratings
-data.sort('votes', ascending=False, inplace=False)
-data[['title', 'year', 'score', 'votes', 'genres']].tail(10)
-#--> LN
+data[data.votes == data.votes.min()][['title', 'year', 'score', 'votes', 'genres']]
 #--> It is interesting the the least number of votes is 1,356 votes.
 #--> Seems like a very arbitrary number. 
-#--> Was that an artifact of dropping certain movies to make dataset smaller?
+#--> Was that an artifact of dropping certain obs to make dataset smaller?
 
-# Movie with good IMDB ratings but not that many votes
+# Movie with good IMDB ratings but not that many votes (under 10k votes)
 data[(data.votes < 10000 ) & (data.score > 8.5)][['title', 'year', 'score', 'votes', 'genres']]
-#-- All three movies are foreign films. The first two are Turksih films.
+#--> All three movies are foreign films. The first two are Turksih films.
 
-# Plot run time versus IMDB rating
-plt.scatter(data.score, data.runtime, lw=0, alpha=.08, color='k')
-plt.xlabel("IMDB Rating")
-plt.ylabel("Run time")
-#--> It seems like higher rated movie have a higher variance in runtime 
+#----------#
+# HW PLOTS #
+#----------#
+
+# Plot scores by average number of votes. Do people tend to vote more for movies they like?
+data.groupby('score').votes.mean().plot( kind='line', color='r', 
+                                        linewidth=2, 
+                                        title='Score by Average Number of Votes')
+#--> It does appear that people tend to vote more for movies they like. 
+#--> The increase around 8 is exponential
+
+# Plot score versus average number of votes for each decade
+data.groupby(['decade', 'score']).title.count().unstack(0).plot(    kind='line', 
+                                                                    linewidth=2, 
+                                                                    title='Number of movies with certain scores by decade')
+#--> The 2000s had a lot of movies. It looks like the distribution of 
+#--> movies scores about the same in every decade.                 
 
 # Mean of drama movies against mean of all movies by decades
 drama = data[data.Drama==True]
@@ -240,31 +245,14 @@ print drama_mean
 
 # Code for lines for all movies and drama movies
 plt.plot(drama_mean.index, drama_mean.values, 'o-',
-        color='c', lw=3, label='Drama Movies Average')
+        color='c', lw=3, label='Drama Movies Decade Average')
         
 plt.plot(decade_mean.index, decade_mean.values, 'o-',
-        color='r', lw=3, label='Decade Average')       
+        color='r', lw=3, label='All Movies Decade Average')     
 # code for scatter plot
 plt.scatter(data.year, data.score, alpha=.04, lw=0, color='k')
 plt.xlabel("Year")
 plt.ylabel("Score")
 plt.legend(frameon=False)
-
 #--> LN: Drama movies have slightly better ratings 
 #--> but the difference is very slight. Probably not significant. 
-
-plt.scatter(drama.year, drama.score, alpha=.04, lw=0, color='k')
-plt.xlabel("Year")
-plt.ylabel("IMDB")
-
-plt.scatter(drama.votes, drama.score, lw=0, alpha=.2, color='k')
-plt.xlabel("Number of Votes")
-plt.ylabel("IMDB Rating")
-plt.xscale('log')
-
-
-
-
-
-
-
