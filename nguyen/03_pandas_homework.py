@@ -222,6 +222,7 @@ data[(data.votes < 10000 ) & (data.score > 8.5)][['title', 'year', 'score', 'vot
 data.groupby('score').votes.mean().plot( kind='line', color='r', 
                                         linewidth=2, 
                                         title='Score by Average Number of Votes')
+plt.savefig('scores_by_votes.png')
 #--> It does appear that people tend to vote more for movies they like. 
 #--> The increase around 8 is exponential
 
@@ -229,6 +230,7 @@ data.groupby('score').votes.mean().plot( kind='line', color='r',
 data.groupby(['decade', 'score']).title.count().unstack(0).plot(    kind='line', 
                                                                     linewidth=2, 
                                                                     title='Number of movies with certain scores by decade')
+plt.savefig('scores_by_decade.png')
 #--> The 2000s had a lot of movies. It looks like the distribution of 
 #--> movies scores about the same in every decade.                 
 
@@ -254,5 +256,6 @@ plt.scatter(data.year, data.score, alpha=.04, lw=0, color='k')
 plt.xlabel("Year")
 plt.ylabel("Score")
 plt.legend(frameon=False)
+plt.savefig('dramas_decades.png')
 #--> LN: Drama movies have slightly better ratings 
 #--> but the difference is very slight. Probably not significant. 
