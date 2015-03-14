@@ -1,0 +1,23 @@
+Brian Fairlie
+DAT6 - Project Proposal
+
+- What is the question you hope to answer? 
+
+I hope to be able to determine a number of factors that contribute to the resonance of Tweets issued 
+by members of violent extremist organizations.
+
+
+- What data are you planning to use to answer that question? 
+
+Twitter metadata, pulled from the Twitter API
+
+
+- What do you know about the data so far? 
+
+I know that I am going to need a large data set and that I will likely need to use multiple API keys 
+to make enough data calls (due to call limitations).
+
+
+- Why did you choose this topic?
+
+It's related to my line of work and behavioral psychology fascinates me.
